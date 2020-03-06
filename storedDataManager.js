@@ -1,7 +1,7 @@
 /* global postRobot */ // tell eslint that postRobot is globally defined
 /* global Cookies */ // tell eslint that Cookies is globally defined
-console.log('loading storedDataManager.js')
-console.log('postRobot loaded: ', postRobot);
+console.log('[DEBUG] loading storedDataManager.js')
+console.log('[DEBUG] postRobot loaded: ', postRobot);
 var localStorageEnabled = false;
 
 // source: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
@@ -96,7 +96,7 @@ postRobot.on('getData', function prGetData(event) {
         //         value: getCookie(event.data.name),
         //     };
         // }
-        console.log('checking local storage');
+        console.log('[DEBUG]checking local storage in efodi.github.io storedData Manager: ', checkStorageThenCookie(event.data.name));
         return {
             value: checkStorageThenCookie(event.data.name),
         };
