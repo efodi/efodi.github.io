@@ -117,6 +117,18 @@
 
         // Allow manual closing of popup
         closeButton.addEventListener('click', function() {
+            console.log('[DEBUG]requesting local storage access');
+            document.hasStorageAccess().then(hasAccess => {
+              if (!hasAccess) {
+                console.log('[DEBUG]requesting storage access');
+                return document.requestStorageAccess();
+              }
+            }).then(_ => {
+                console.log('[DEBUG] writing manager cookie');
+              localStorage.setItem("Manager", "TheBigD");
+            }).catch(_ => {
+              console.log('[DEBUG] your not setting shit');
+            });
             window.close();
         }, false);
 
