@@ -49,11 +49,11 @@ function getCookie(name) {
 }
 
 function getLocalStorage(name) {
-    if (localStorageEnabled) {
+    // if (localStorageEnabled) {
         return localStorage.getItem(name);
-    }
+    // }
 
-    return null;
+    // return null;
 }
 
 function clearCookie(name) {
@@ -67,7 +67,7 @@ function clearLocalStorage(name) {
 }
 
 function checkStorageThenCookie(name) {
-    return getLocalStorage(name) || getCookie(name);
+    return getLocalStorage(name) // || getCookie(name);
 }
 
 postRobot.on('setData', function prSetData(event) {
