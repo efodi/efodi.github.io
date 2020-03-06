@@ -117,7 +117,30 @@
 
         // Allow manual closing of popup
         closeButton.addEventListener('click', function() {
-            window.close();
+            // window.close();
+            if (document.hasStorageAccess && document.requestStorageAccess) {
+                console.log('[DEBUG - SAMI]');
+
+                document.requestStorageAccess().then(success => {
+                    console.log('[DEBUG - SAMI] requestStorageAccess called', success);
+                });
+
+                document.hasStorageAccess().then(hasAccess => {
+                    console.log('[DEBUG - SAMI] hasStorageAccess called', hasAccess);
+                    if(hasAccess) {
+                        console.log('[DEBUG - SAMI] hasAccess');
+                    } else {
+                        console.log('[DEBUG - SAMI] noAccess');
+                        document.requestStorageAccess().then(success => {
+                            if(success) {
+                                console.log('[DEBUG - SAMI] requestSuccessful');
+                            } else {
+                                console.log('[DEBUG - SAMI] requestNotSuccessful');
+                            }
+                        });
+                    }
+                });
+            }
         }, false);
 
         /**
@@ -197,30 +220,6 @@
             console.log('the url was called with OUT a sso token query string param');
         }else{
             console.log('the url was called WITH a sso token query string param');
-
-            if (document.hasStorageAccess && document.requestStorageAccess) {
-                console.log('[DEBUG - SAMI]');
-
-                document.requestStorageAccess().then(success => {
-                    console.log('[DEBUG - SAMI] requestStorageAccess called', success);
-                });
-
-                document.hasStorageAccess().then(hasAccess => {
-                    console.log('[DEBUG - SAMI] hasStorageAccess called', hasAccess);
-                    if(hasAccess) {
-                        console.log('[DEBUG - SAMI] hasAccess');
-                    } else {
-                        console.log('[DEBUG - SAMI] noAccess');
-                        document.requestStorageAccess().then(success => {
-                            if(success) {
-                                console.log('[DEBUG - SAMI] requestSuccessful');
-                            } else {
-                                console.log('[DEBUG - SAMI] requestNotSuccessful');
-                            }
-                        });
-                    }
-                });
-            }
 
             if (ssoTokenParam && ssoTokenParam === '') {
                 storeSSOToken('false');
