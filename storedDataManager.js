@@ -96,7 +96,7 @@ postRobot.on('getData', function prGetData(event) {
         //         value: getCookie(event.data.name),
         //     };
         // }
-        console.logI('checking local storage');
+        console.log('checking local storage');
         return {
             value: checkStorageThenCookie(event.data.name),
         };
