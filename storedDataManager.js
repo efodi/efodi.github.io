@@ -67,6 +67,7 @@ function clearLocalStorage(name) {
 }
 
 function checkStorageThenCookie(name) {
+    console.log('[DEBUG] local storage value: ', getLocalStorage(name))
     return getLocalStorage(name) // || getCookie(name);
 }
 
@@ -116,3 +117,24 @@ postRobot.on('clearData', function prClearData(event) {
 
     throw new Error('name is required in all clearCookie calls');
 });
+
+let $button = document.createElement("BUTTON");
+$button.onClick = () => {
+    console.log('[DEBUG]Checking local storage access in index.html');
+    document.hasStorageAccess().then(hasAccess => {
+      if (!hasAccess) {
+        console.log('[DEBUG]requesting storage access function call');
+        return document.requestStorageAccess();
+      }
+    }).then(_ => {
+        console.log('[DEBUG] writing manager cookie');
+      localStorage.setItem("Manager", "TheBigD");
+    }).catch(_ => {
+      console.log('[DEBUG] your not setting shit');
+    });
+}
+$button.innerHTML = 'request dat access!';
+document.body.appendChild($button);
+
+
+
