@@ -228,32 +228,18 @@
                 .catch(er => {
                     console.log('[DEBUG] request access error: ', er)
                 })
-
-            // document.hasStorageAccess().then(hasAccess => {
-            //     console.log('[DEBUG] ssoios.html does it have storage access : ', hasAccess);
-            //     if (!hasAccess) {
-            //         console.log('[DEBUG] requestion access');
-            //         return document.requestStorageAccess()
-            //     }
-            // }.then(() => {
-            //     console.log('[DEBUG] setting local storage');
-            //     localStorage.setItem("batman", "joker");
-            // }).catch(() => {
-            //     console.log('[DEBUG] something the promise was rejected, da fuq');
-            // })
         }
 
-        console.log('[DEBUG] ssoios adding request access button');
+        console.log('[DEBUG]request storage access');
         let $button = document.createElement("BUTTON");
         $button.setAttribute('id', 'mybutton');
-        $button.innerHTML = 'ssoios request dat access and get value!';
+        $button.innerHTML = 'request storage access!';
         document.body.appendChild($button);
         document.getElementById('mybutton').addEventListener('click', requestAccess);
 
-        console.log('[DEBUG] ssoios adding check access button');
         let $button2 = document.createElement("BUTTON");
         $button2.setAttribute('id', 'check');
-        $button2.innerHTML = 'ssoios check dat access!';
+        $button2.innerHTML = 'check storage access!';
         document.body.appendChild($button2);
         document.getElementById('check').addEventListener('click', () => {
             console.log('[DEBUG] checking access to local storage');
@@ -262,7 +248,6 @@
                 .catch((result) => {console.log('[DEBUG] check storage access rejected', result)});
         });
 
-        console.log('[DEBUG] ssoios adding read local storage button');
         let $button3 = document.createElement("BUTTON");
         $button3.setAttribute('id', 'read');
         $button3.innerHTML = 'read local storage!';
@@ -272,7 +257,6 @@
             console.log('[DEBUG] sr_ssotoken: ', localStorage.getItem('sr_ssotoken'))
         });
 
-        console.log('[DEBUG] ssoios adding writing local storage button');
         let $button4 = document.createElement("BUTTON");
         $button4.setAttribute('id', 'write');
         $button4.innerHTML = 'write local storage!';
@@ -280,6 +264,15 @@
         document.getElementById('write').addEventListener('click', () => {
             console.log('[DEBUG] setting batman: ');
             localStorage.setItem('batman', 'joker');
+        });
+
+        let $button5 = document.createElement("BUTTON");
+        $button5.setAttribute('id', 'popup');
+        $button5.innerHTML = 'open pop up';
+        document.body.appendChild($button5);
+        var popup = '';
+        document.getElementById('popup').addEventListener('click', () => {
+            popup = window.open('https://efodi.github.io/ssoios.html', 'Spufflez','height=200,width=150');
         });
     </script>
 </body>
