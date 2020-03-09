@@ -134,9 +134,11 @@ function requestAccess(){
 
 console.log('stored data manger adding button');
 let $button = document.createElement("BUTTON");
-$button.onClick = requestAccess;
+// $button.onClick = requestAccess;
+$button.setAttribute('id', 'mybutton');
 $button.innerHTML = 'request dat access!';
 document.body.appendChild($button);
+document.getElementById('mybutton').addEventListener('click', requestAccess);
 
 
 
