@@ -135,7 +135,7 @@ function requestAccess(){
     //   console.log('[DEBUG] your not setting shit!', e);
     // });
     document.requestStorageAccess()
-        .then(access => {console.log('[DEBUG] result of request access: ', access)});
+        .then(access => {console.log('[DEBUG] result of request access: ', access)})
         .catch(er => {console.log('[DEBUG] request access error: ', er)})
 }
 
