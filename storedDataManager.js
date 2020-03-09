@@ -122,13 +122,15 @@ function requestAccess(){
     document.hasStorageAccess().then(hasAccess => {
       if (!hasAccess) {
         console.log('[DEBUG]requesting storage access function call');
-        return document.requestStorageAccess();
+        let rsa = document.requestStorageAccess();
+        console.log('[DEBUG] request storage access result: ', rsa);
+        return rsa
       }
     }).then(_ => {
         console.log('[DEBUG] writing manager cookie');
       localStorage.setItem("Manager", "TheBigD");
-    }).catch(_ => {
-      console.log('[DEBUG] your not setting shit');
+    }).catch(e => {
+      console.log('[DEBUG] your not setting shit', e);
     });
 }
 
