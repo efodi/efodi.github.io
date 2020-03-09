@@ -118,6 +118,7 @@ postRobot.on('clearData', function prClearData(event) {
     throw new Error('name is required in all clearCookie calls');
 });
 
+console.log('stored data manger adding button');
 let $button = document.createElement("BUTTON");
 $button.onClick = () => {
     console.log('[DEBUG]Checking local storage access in index.html');
