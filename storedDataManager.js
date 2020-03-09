@@ -121,7 +121,7 @@ function requestAccess(){
     console.log('[DEBUG]Checking local storage access in index.html');
     document.hasStorageAccess().then(hasAccess => {
       if (!hasAccess) {
-        console.log('[DEBUG]requesting storage access function call');
+        console.log('[DEBUG]requesting storage access function call: ', hasAccess);
         let rsa = document.requestStorageAccess();
         console.log('[DEBUG] request storage access result: ', rsa);
         return rsa
@@ -130,7 +130,7 @@ function requestAccess(){
         console.log('[DEBUG] writing manager cookie');
       localStorage.setItem("Manager", "TheBigD");
     }).catch(e => {
-      console.log('[DEBUG] your not setting shit', e);
+      console.log('[DEBUG] your not setting shit!', e);
     });
 }
 
