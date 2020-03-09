@@ -119,21 +119,24 @@ postRobot.on('clearData', function prClearData(event) {
 });
 function requestAccess(){
     console.log('[DEBUG]Checking local storage access in index.html');
-    document.hasStorageAccess().then(hasAccess => {
-      if (!hasAccess) {
-        console.log('[DEBUG]requesting storage access function call: ', hasAccess);
-        return document.requestStorageAccess()
-      }
-    }).then(prom => {
-        console.log('[DEBUG] writing manager cookie');
-        prom.then((result) => {
-            console.log('[DEBUG] request access promise return value: ', result)
-            localStorage.setItem("Manager", "TheBigD");
-            console.log('[DEBUG] local storage getItem: ', localStorage.getItem("Manager"));
-        })
-    }).catch(e => {
-      console.log('[DEBUG] your not setting shit!', e);
-    });
+    // document.hasStorageAccess().then(hasAccess => {
+    //   if (!hasAccess) {
+    //     console.log('[DEBUG]requesting storage access function call: ', hasAccess);
+    //     return document.requestStorageAccess()
+    //   }
+    // }).then(prom => {
+    //     console.log('[DEBUG] writing manager cookie');
+    //     prom.then((result) => {
+    //         console.log('[DEBUG] request access promise return value: ', result)
+    //         localStorage.setItem("Manager", "TheBigD");
+    //         console.log('[DEBUG] local storage getItem: ', localStorage.getItem("Manager"));
+    //     })
+    // }).catch(e => {
+    //   console.log('[DEBUG] your not setting shit!', e);
+    // });
+    document.requestStorageAccess()
+        .then(access => {console.log('[DEBUG] result of request access: ', access)});
+        .catch(er => {console.log('[DEBUG] request access error: ', er)})
 }
 
 console.log('stored data manger adding button');
