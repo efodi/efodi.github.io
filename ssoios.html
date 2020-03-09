@@ -108,7 +108,7 @@
     <main class="main">
         <h1 class="title">You have been signed in to ShopRunner!</h1>
         <p>
-            Close this tab to continue shopping.
+            Close this tab to continue shopping!!.
         </p>
         <button id="close" type="button" class="button">Continue Shopping</button>
     </main>
@@ -217,6 +217,70 @@
         }
         console.log('window.close called');
         // window.close();
+
+        function requestAccess(){
+            console.log('[DEBUG] Requesting local storage access in ssoios.html');
+            document.requestStorageAccess()
+                .then(access => {
+                    console.log('[DEBUG] result of request access: ', access);
+                    // localStorage.setItem("batman", "joker");
+                })
+                .catch(er => {
+                    console.log('[DEBUG] request access error: ', er)
+                })
+
+            // document.hasStorageAccess().then(hasAccess => {
+            //     console.log('[DEBUG] ssoios.html does it have storage access : ', hasAccess);
+            //     if (!hasAccess) {
+            //         console.log('[DEBUG] requestion access');
+            //         return document.requestStorageAccess()
+            //     }
+            // }.then(() => {
+            //     console.log('[DEBUG] setting local storage');
+            //     localStorage.setItem("batman", "joker");
+            // }).catch(() => {
+            //     console.log('[DEBUG] something the promise was rejected, da fuq');
+            // })
+        }
+
+        console.log('[DEBUG] ssoios adding request access button');
+        let $button = document.createElement("BUTTON");
+        $button.setAttribute('id', 'mybutton');
+        $button.innerHTML = 'ssoios request dat access and get value!';
+        document.body.appendChild($button);
+        document.getElementById('mybutton').addEventListener('click', requestAccess);
+
+        console.log('[DEBUG] ssoios adding check access button');
+        let $button2 = document.createElement("BUTTON");
+        $button2.setAttribute('id', 'check');
+        $button2.innerHTML = 'ssoios check dat access!';
+        document.body.appendChild($button2);
+        document.getElementById('check').addEventListener('click', () => {
+            console.log('[DEBUG] checking access to local storage');
+            document.hasStorageAccess()
+                .then((result) => {console.log('[DEBUG] access:: ', result)})
+                .catch((result) => {console.log('[DEBUG] check storage access rejected', result)});
+        });
+
+        console.log('[DEBUG] ssoios adding read local storage button');
+        let $button3 = document.createElement("BUTTON");
+        $button3.setAttribute('id', 'read');
+        $button3.innerHTML = 'read local storage!';
+        document.body.appendChild($button3);
+        document.getElementById('read').addEventListener('click', () => {
+            console.log('[DEBUG] Batman: ', localStorage.getItem('batman'));
+            console.log('[DEBUG] sr_ssotoken: ', localStorage.getItem('sr_ssotoken'))
+        });
+
+        console.log('[DEBUG] ssoios adding writing local storage button');
+        let $button4 = document.createElement("BUTTON");
+        $button4.setAttribute('id', 'write');
+        $button4.innerHTML = 'write local storage!';
+        document.body.appendChild($button4);
+        document.getElementById('write').addEventListener('click', () => {
+            console.log('[DEBUG] setting batman: ');
+            localStorage.getItem('batman', 'joker');
+        });
     </script>
 </body>
 </html>
