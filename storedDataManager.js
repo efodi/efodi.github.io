@@ -117,10 +117,7 @@ postRobot.on('clearData', function prClearData(event) {
 
     throw new Error('name is required in all clearCookie calls');
 });
-
-console.log('stored data manger adding button');
-let $button = document.createElement("BUTTON");
-$button.onClick = () => {
+function requestAccess(){
     console.log('[DEBUG]Checking local storage access in index.html');
     document.hasStorageAccess().then(hasAccess => {
       if (!hasAccess) {
@@ -134,6 +131,10 @@ $button.onClick = () => {
       console.log('[DEBUG] your not setting shit');
     });
 }
+
+console.log('stored data manger adding button');
+let $button = document.createElement("BUTTON");
+$button.onClick = requestAccess;
 $button.innerHTML = 'request dat access!';
 document.body.appendChild($button);
 
