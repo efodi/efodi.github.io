@@ -108,7 +108,7 @@
     <main class="main">
         <h1 class="title">You have been signed in to ShopRunner!</h1>
         <p>
-            Close this tab to continue shopping!!.
+            Close this tab to continue shopping1!.
         </p>
         <button id="close" type="button" class="button">Continue Shopping</button>
     </main>
@@ -117,18 +117,18 @@
 
         // Allow manual closing of popup
         closeButton.addEventListener('click', function() {
-            console.log('[DEBUG]requesting local storage access');
-            document.hasStorageAccess().then(hasAccess => {
-              if (!hasAccess) {
-                console.log('[DEBUG]requesting storage access');
-                return document.requestStorageAccess();
-              }
-            }).then(_ => {
-                console.log('[DEBUG] writing manager cookie');
-              localStorage.setItem("Manager", "TheBigD");
-            }).catch(_ => {
-              console.log('[DEBUG] your not setting shit');
-            });
+            // console.log('[DEBUG]requesting local storage access');
+            // document.hasStorageAccess().then(hasAccess => {
+            //   if (!hasAccess) {
+            //     console.log('[DEBUG]requesting storage access');
+            //     return document.requestStorageAccess();
+            //   }
+            // }).then(_ => {
+            //     console.log('[DEBUG] writing manager cookie');
+            //   localStorage.setItem("Manager", "TheBigD");
+            // }).catch(_ => {
+            //   console.log('[DEBUG] your not setting shit');
+            // });
             window.close();
         }, false);
 
@@ -218,62 +218,62 @@
         console.log('window.close called');
         // window.close();
 
-        function requestAccess(){
-            console.log('[DEBUG] Requesting local storage access in ssoios.html');
-            document.requestStorageAccess()
-                .then(access => {
-                    console.log('[DEBUG] result of request access: ', access);
-                    // localStorage.setItem("batman", "joker");
-                })
-                .catch(er => {
-                    console.log('[DEBUG] request access error: ', er)
-                })
-        }
+        // function requestAccess(){
+        //     console.log('[DEBUG] Requesting local storage access in ssoios.html');
+        //     document.requestStorageAccess()
+        //         .then(access => {
+        //             console.log('[DEBUG] result of request access: ', access);
+        //             // localStorage.setItem("batman", "joker");
+        //         })
+        //         .catch(er => {
+        //             console.log('[DEBUG] request access error: ', er)
+        //         })
+        // }
 
-        console.log('[DEBUG]request storage access');
-        let $button = document.createElement("BUTTON");
-        $button.setAttribute('id', 'mybutton');
-        $button.innerHTML = 'request storage access!';
-        document.body.appendChild($button);
-        document.getElementById('mybutton').addEventListener('click', requestAccess);
+        // console.log('[DEBUG]request storage access');
+        // let $button = document.createElement("BUTTON");
+        // $button.setAttribute('id', 'mybutton');
+        // $button.innerHTML = 'request storage access!';
+        // document.body.appendChild($button);
+        // document.getElementById('mybutton').addEventListener('click', requestAccess);
 
-        let $button2 = document.createElement("BUTTON");
-        $button2.setAttribute('id', 'check');
-        $button2.innerHTML = 'check storage access!';
-        document.body.appendChild($button2);
-        document.getElementById('check').addEventListener('click', () => {
-            console.log('[DEBUG] checking access to local storage');
-            document.hasStorageAccess()
-                .then((result) => {console.log('[DEBUG] access:: ', result)})
-                .catch((result) => {console.log('[DEBUG] check storage access rejected', result)});
-        });
+        // let $button2 = document.createElement("BUTTON");
+        // $button2.setAttribute('id', 'check');
+        // $button2.innerHTML = 'check storage access!';
+        // document.body.appendChild($button2);
+        // document.getElementById('check').addEventListener('click', () => {
+        //     console.log('[DEBUG] checking access to local storage');
+        //     document.hasStorageAccess()
+        //         .then((result) => {console.log('[DEBUG] access:: ', result)})
+        //         .catch((result) => {console.log('[DEBUG] check storage access rejected', result)});
+        // });
 
-        let $button3 = document.createElement("BUTTON");
-        $button3.setAttribute('id', 'read');
-        $button3.innerHTML = 'read local storage!';
-        document.body.appendChild($button3);
-        document.getElementById('read').addEventListener('click', () => {
-            console.log('[DEBUG] Batman: ', localStorage.getItem('batman'));
-            console.log('[DEBUG] sr_ssotoken: ', localStorage.getItem('sr_ssotoken'))
-        });
+        // let $button3 = document.createElement("BUTTON");
+        // $button3.setAttribute('id', 'read');
+        // $button3.innerHTML = 'read local storage!';
+        // document.body.appendChild($button3);
+        // document.getElementById('read').addEventListener('click', () => {
+        //     console.log('[DEBUG] Batman: ', localStorage.getItem('batman'));
+        //     console.log('[DEBUG] sr_ssotoken: ', localStorage.getItem('sr_ssotoken'))
+        // });
 
-        let $button4 = document.createElement("BUTTON");
-        $button4.setAttribute('id', 'write');
-        $button4.innerHTML = 'write local storage!';
-        document.body.appendChild($button4);
-        document.getElementById('write').addEventListener('click', () => {
-            console.log('[DEBUG] setting batman: ');
-            localStorage.setItem('batman', 'joker');
-        });
+        // let $button4 = document.createElement("BUTTON");
+        // $button4.setAttribute('id', 'write');
+        // $button4.innerHTML = 'write local storage!';
+        // document.body.appendChild($button4);
+        // document.getElementById('write').addEventListener('click', () => {
+        //     console.log('[DEBUG] setting batman: ');
+        //     localStorage.setItem('batman', 'joker');
+        // });
 
-        let $button5 = document.createElement("BUTTON");
-        $button5.setAttribute('id', 'popup');
-        $button5.innerHTML = 'open pop up';
-        document.body.appendChild($button5);
-        var popup = '';
-        document.getElementById('popup').addEventListener('click', () => {
-            popup = window.open('https://efodi.github.io/ssoios.html', 'Spufflez','height=200,width=150');
-        });
+        // let $button5 = document.createElement("BUTTON");
+        // $button5.setAttribute('id', 'popup');
+        // $button5.innerHTML = 'open pop up';
+        // document.body.appendChild($button5);
+        // var popup = '';
+        // document.getElementById('popup').addEventListener('click', () => {
+        //     popup = window.open('https://efodi.github.io/ssoios.html', 'Spufflez','height=200,width=150');
+        // });
     </script>
 </body>
 </html>
