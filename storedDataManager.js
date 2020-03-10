@@ -194,7 +194,7 @@ document.body.appendChild($button7);
 document.getElementById('ssotoken').addEventListener('click', () => {
     console.log('[DEBUG] retrieved batman from popup', popup.localStorage.getItem('sr_ssotoken'))
     console.log('writing retrieved value to localstorage in the iframe (index.html)');
-    localStorage.setItem('batman', popup.localStorage.getItem('sr_ssotoken'));
+    localStorage.setItem('sr_ssotoken', popup.localStorage.getItem('sr_ssotoken'));
 });
 
 
