@@ -150,7 +150,6 @@ function requestAccess(){
         })
 }
 
-console.log('[DEBUG]request storage access');
 let $button = document.createElement("BUTTON");
 $button.setAttribute('id', 'mybutton');
 $button.innerHTML = 'request storage access!';
@@ -168,52 +167,82 @@ document.getElementById('check').addEventListener('click', () => {
         .catch((result) => {console.log('[DEBUG] check storage access rejected', result)});
 });
 
-let $button3 = document.createElement("BUTTON");
-$button3.setAttribute('id', 'read');
-$button3.innerHTML = 'read local storage!';
-document.body.appendChild($button3);
-document.getElementById('read').addEventListener('click', () => {
-    console.log('[DEBUG] Batman: ', localStorage.getItem('batman'));
-    console.log('[DEBUG] sr_ssotoken: ', localStorage.getItem('sr_ssotoken'))
-});
+function writeCookie(){
+    console.log('writing to cookie storage');
+    var date = new Date();
+    date.setTime(date.getTime() + (2*24*60*60*1000));
+    const expires = "; expires=" + date.toUTCString();
+    document.cookie = `cookieSsoToken=this_is_the_sso_token${expires}`;
+}
 
-let $button4 = document.createElement("BUTTON");
-$button4.setAttribute('id', 'write');
-$button4.innerHTML = 'write local storage!';
-document.body.appendChild($button4);
-document.getElementById('write').addEventListener('click', () => {
-    console.log('[DEBUG] setting batman: ');
-    localStorage.setItem('batman', 'joker');
-});
+function readCookie(){
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++){
+        if (cookies[i].match(/cookieSsoToken=this_is_the_sso_token/)){
+            console.log('reading from cookie storage: ', cookies[i])
+        }
+    }
+}
+function clearCookie(){
+    console.log('clearing cookie');
+    document.cookie = 'cookieSsoToken=; Max-Age=-99999999;';
+}
 
-let $button5 = document.createElement("BUTTON");
-$button5.setAttribute('id', 'popup');
-$button5.innerHTML = 'open pop up';
-document.body.appendChild($button5);
-var popup = '';
-document.getElementById('popup').addEventListener('click', () => {
-    popup = window.open('https://efodi.github.io/ssoios.html', 'Spufflez','height=200,width=150');
-});
+function displayCookie(){
+    console.log('Cookies Storage: ', document.cookie);
+}
 
-let $button6 = document.createElement("BUTTON");
-$button6.setAttribute('id', 'batman');
-$button6.innerHTML = 'get Batman from popup';
-document.body.appendChild($button6);
-document.getElementById('batman').addEventListener('click', () => {
-    console.log('[DEBUG] retrieved batman from popup', popup.localStorage.getItem('batman'))
-    console.log('writing retrieved value to localstorage int he iframe (index.html)');
-    localStorage.setItem('batman', popup.localStorage.getItem('batman'));
-});
+document.getElementById('writeCookie').onclick = writeCookie;
+document.getElementById('readCookie').onclick = readCookie;
+document.getElementById('clearCookie').onclick = clearCookie;
+document.getElementById('displayCookie').onclick = displayCookie;
 
-let $button7 = document.createElement("BUTTON");
-$button7.setAttribute('id', 'ssotoken');
-$button7.innerHTML = 'get ssotoken from popup';
-document.body.appendChild($button7);
-document.getElementById('ssotoken').addEventListener('click', () => {
-    console.log('[DEBUG] retrieved batman from popup', popup.localStorage.getItem('sr_ssotoken'))
-    console.log('writing retrieved value to localstorage in the iframe (index.html)');
-    localStorage.setItem('sr_ssotoken', popup.localStorage.getItem('sr_ssotoken'));
-});
+// let $button3 = document.createElement("BUTTON");
+// $button3.setAttribute('id', 'read');
+// $button3.innerHTML = 'read local storage!';
+// document.body.appendChild($button3);
+// document.getElementById('read').addEventListener('click', () => {
+//     console.log('[DEBUG] Batman: ', localStorage.getItem('batman'));
+//     console.log('[DEBUG] sr_ssotoken: ', localStorage.getItem('sr_ssotoken'))
+// });
+
+// let $button4 = document.createElement("BUTTON");
+// $button4.setAttribute('id', 'write');
+// $button4.innerHTML = 'write local storage!';
+// document.body.appendChild($button4);
+// document.getElementById('write').addEventListener('click', () => {
+//     console.log('[DEBUG] setting batman: ');
+//     localStorage.setItem('batman', 'joker');
+// });
+
+// let $button5 = document.createElement("BUTTON");
+// $button5.setAttribute('id', 'popup');
+// $button5.innerHTML = 'open pop up';
+// document.body.appendChild($button5);
+// var popup = '';
+// document.getElementById('popup').addEventListener('click', () => {
+//     popup = window.open('https://efodi.github.io/ssoios.html', 'Spufflez','height=200,width=150');
+// });
+
+// let $button6 = document.createElement("BUTTON");
+// $button6.setAttribute('id', 'batman');
+// $button6.innerHTML = 'get Batman from popup';
+// document.body.appendChild($button6);
+// document.getElementById('batman').addEventListener('click', () => {
+//     console.log('[DEBUG] retrieved batman from popup', popup.localStorage.getItem('batman'))
+//     console.log('writing retrieved value to localstorage int he iframe (index.html)');
+//     localStorage.setItem('batman', popup.localStorage.getItem('batman'));
+// });
+
+// let $button7 = document.createElement("BUTTON");
+// $button7.setAttribute('id', 'ssotoken');
+// $button7.innerHTML = 'get ssotoken from popup';
+// document.body.appendChild($button7);
+// document.getElementById('ssotoken').addEventListener('click', () => {
+//     console.log('[DEBUG] retrieved batman from popup', popup.localStorage.getItem('sr_ssotoken'))
+//     console.log('writing retrieved value to localstorage in the iframe (index.html)');
+//     localStorage.setItem('sr_ssotoken', popup.localStorage.getItem('sr_ssotoken'));
+// });
 
 
 
